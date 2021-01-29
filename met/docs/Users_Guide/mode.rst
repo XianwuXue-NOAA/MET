@@ -109,6 +109,11 @@ This section contains a description of how MODE can be configured and run. The M
 
 MODE provides the capability to select a single model variable/level from which to derive objects to be analyzed. MODE was developed and tested using accumulated precipitation. However, the code has been generalized to allow the use of any gridded model and observation field. Based on the options specified in the configuration file, MODE will define a set of simple objects in the model and observation fields. It will then compute an interest value for each pair of objects across the fields using a fuzzy engine approach. Those interest values are thresholded, and any pairs of objects above the threshold will be matched/merged. Through the configuration file, MODE offers a wide range of flexibility in how the objects are defined, processed, matched, and merged.
 
+Multivariate MODE is an extension of MODE that allows for the identification of an object based on more than one input field. The user decides what the appropriate input fields and thresholds for identification. These are listed as entries in a dictionary in the MODE configuration file. The multivariate MODE tool runs single variate (or "classic") MODE over each individual field in the order in which it is listed in the field dictionary. These include the data identification, convolution, and thresholding steps. Once the object mask fields are defined, multivariate MODE then defines the “super object”, that is, the object that is defined by multiple fields. The super object is defined by combining the individual object fields using a combination logic string. This combination logic string is defined by the user. An example of this logic is “#1 && #2 && #3” where "#1" stand for "field 1" and "&&" stands for "and". This results in the intersection of the binary mask fields for fields 1-3. 
+
+
+**Fill in rest after multivariate MODE is fixed**
+
 mode usage
 ~~~~~~~~~~
 
