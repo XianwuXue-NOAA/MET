@@ -112,10 +112,10 @@ MODE provides the capability to select a single model variable/level from which 
 Multivariate MODE is an extension of MODE that allows for the identification of an object based on more than one input field. The user decides what the appropriate input fields and thresholds for identification. These are listed as entries in a dictionary in the MODE configuration file. The multivariate MODE tool runs single variate (or "classic") MODE over each individual field in the order in which it is listed in the field dictionary. These include the data identification, convolution, and thresholding steps. Once the object mask fields are defined, multivariate MODE then defines the “super object”, that is, the object that is defined by multiple fields. The super object is defined by combining the individual object fields using a combination logic string. This combination logic string is defined by the user. An example of this logic is “#1 && #2 && #3” where "#1" stand for "field 1" and "&&" stands for "and". This results in the intersection of the binary mask fields for fields 1-3. 
 
 
-**Fill in rest after multivariate MODE is fixed**
-
 mode usage
 ~~~~~~~~~~
+**I was not able to update this section because the feature_1148 MODE command segfaults**
+
 
 The usage statement for the MODE tool is listed below:
 
@@ -132,6 +132,7 @@ The usage statement for the MODE tool is listed below:
          [-compress level]
 
 The MODE tool has three required arguments and can accept several optional arguments.
+
 
 Required arguments for mode
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -494,6 +495,9 @@ _____________________
 When MODE is run on global grids, this parameter specifies how many grid squares to shift the grid to the right. MODE does not currently connect objects from one side of a global grid to the other, potentially causing objects straddling the "cut" longitude to be separated into two objects. Shifting the grid by integer number of grid units enables the user to control where that longitude cut line occurs.
 
 .. _MODE-output:
+
+multivariate mode configuration file
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 mode output
 ~~~~~~~~~~~
