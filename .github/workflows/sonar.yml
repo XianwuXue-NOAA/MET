@@ -1,4 +1,4 @@
-name: SonarCloud
+name: SonarSource
 on:
   push:
     branches:
@@ -6,18 +6,28 @@ on:
       - feature_*
       - main_*
       - bugfix_*
+    paths:
+      - met/src/**
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
-  sonarcloud:
-    name: SonarCloud
+  sonarsource:
+    name: Sonar
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Run SonarSource
+        run: ./.github/jobs/run_sonar_source.sh
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: sonarsource
+          path: artifact/sonar
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: run_sonar_source.log
+          path: artifact/run_sonar_source.log
+          if-no-files-found: ignore
