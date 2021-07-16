@@ -6,8 +6,6 @@ on:
       - feature_*
       - main_*
       - bugfix_*
-    paths:
-      - met/src/**
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
